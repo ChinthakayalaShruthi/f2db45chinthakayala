@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let results=[{gas :'nitrogen', color:'lavender', count:11} ,{gas :'helium',color:'maroon', count:10} ,{gas :'carbon dioxide',color:'black', count:8}]
+  div(class="container-fluid")
+  div(class="row")
+  each value,index in results
+    div(class="col-sm-2" onclick=`buy(${index})`) gas #{value.gas}, color #{value.color}, shape #{value.count}
+  script.
+    function buy(index)
+    {
+      alert(`Your purchased Item ${index+1}`)
+    }
