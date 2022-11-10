@@ -24,3 +24,15 @@ exports.ballon_delete = function(req, res) {
 exports.ballon_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Ballon update PUT' + req.params.id); 
 }; 
+
+// List of all Ballon 
+exports.ballon_list = async function(req, res) { 
+    try{ 
+        theBallons = await Ballon.find(); 
+        res.send(theBallons); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
