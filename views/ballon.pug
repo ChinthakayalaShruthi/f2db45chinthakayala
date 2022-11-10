@@ -2,11 +2,12 @@ extends layout
 
 block content
   h1= title
-  - let results=[{gas :'nitrogen', color:'lavender', count:11} ,{gas :'helium',color:'maroon', count:10} ,{gas :'carbon dioxide',color:'black', count:8}]
+   //let results=[{gas :'nitrogen', color:'lavender', count:11} ,{gas :'helium',color:'maroon', count:10} ,{gas :'carbon dioxide',color:'black', count:8}]
+  - let items = results 
   div(class="container-fluid")
   div(class="row")
   each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`) gas #{value.gas}, color #{value.color}, shape #{value.count}
+    div(class="col-sm-2" onclick=`buy(${index})`) gas #{value.gas}, color #{value.color}, count #{value.count}
   script.
     function buy(index)
     {
