@@ -5,9 +5,16 @@ exports.ballon_list = function(req, res) {
     res.send('NOT IMPLEMENTED: Ballon list'); 
 }; 
  
-// for a specific Ballon. 
-exports.ballon_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Ballon detail: ' + req.params.id); 
+// for a specific Costume. 
+exports.ballon_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Ballon.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
  
 // Handle Ballon create on POST. 
@@ -70,3 +77,24 @@ exports.ballon_create_post = async function(req, res) {
         res.send(`{"error": ${err}}`); 
     }   
 }; 
+
+// Handle Costume update form on PUT. 
+exports.ballon_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Ballon.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.gas)  
+               toUpdate.gas = req.body.gas; 
+        if(req.body.colour) toUpdate.colour = req.body.colour; 
+        if(req.body.count) toUpdate.count = req.body.count; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+};
