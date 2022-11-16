@@ -10,6 +10,9 @@ var express = require('express');
 const ballon_controlers= require('../controllers/ballon'); 
 var router = express.Router(); 
  
-/* GET costumes */ 
+/* GET ballon */ 
 router.get('/', ballon_controlers.ballon_view_all_Page ); 
 module.exports = router; 
+
+/* GET detail ballon page */ 
+router.get('/detail', ballon_controlers.ballon_view_one_Page); 

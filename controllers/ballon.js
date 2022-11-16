@@ -1,3 +1,4 @@
+const ballon = require('../models/ballon');
 var Ballon = require('../models/ballon'); 
  
 // List of all Ballon 
@@ -98,3 +99,32 @@ ${JSON.stringify(req.body)}`)
 failed`); 
     } 
 };
+// Handle ballon delete on DELETE. 
+exports.ballon_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await ballon.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+
+
+// Handle a show one view with id specified by query 
+exports.ballon_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Ballon.findById( req.query.id) 
+        res.render('ballondetail',  
+{ title: 'Ballon Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+ 
+ 

@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+.ballonAttr { 
+  background-color: rgb(187, 127, 255); 
+  width: 120px; 
+} 
