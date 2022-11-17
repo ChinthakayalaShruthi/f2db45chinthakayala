@@ -2,6 +2,11 @@ extends layout
  
 block content 
   h1= title 
+  if(toshow==null)
+
+    h2 No instance to Details
+
+  else
  
   - let ballonid = toShow._id 
   - let ballon_type  = toShow.gas  

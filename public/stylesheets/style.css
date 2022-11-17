@@ -10,3 +10,10 @@ a {
   background-color: rgb(187, 127, 255); 
   width: 120px; 
 } 
+.ballonStyle {
+  background-color: rgb(173, 197, 85);
+  width: 150px;
+  text-shadow: 4px,4px,4px;
+  font-size: medium;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
