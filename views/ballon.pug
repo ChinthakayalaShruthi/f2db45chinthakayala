@@ -4,13 +4,19 @@ block content
   h1= title
   div(class="container-fluid")
   // - let results=[{colour:"red",cost:77,height :5},{colour:"blue",cost:99,height :7},{colour:"blue",cost:23.2 ,height:5}]
+  - let Create = `dispatch(\"/ballon/create\")`
+  button.btn( class="btn-primary ml-1", onclick= Create) Create
   - let items = results 
     div(class="container-fluid") 
   div(class="row") 
     each item in items  
       - let destination = `dispatch(\"/ballon/update?id=${item._id}\")` 
+      - let detail = `dispatch(\"/ballon/detail?id=${item._id}\")`
+      - let Delete = `dispatch(\"/ballon/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.gas}(#{item.colour}) is #{item.count} 
          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+         button.btn( class="btn-primary ml-1", onclick= detail) Details
+         button.btn( class="btn-primary ml-1", onclick= Delete) Delete
   script. 
     function dispatch(path){ 
       window.location.href=path 
